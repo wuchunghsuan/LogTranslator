@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.regex.*;
 
@@ -15,7 +16,7 @@ class Log {
     public Log(String h ,String t ,String d, String n, String c) {
         this.disk = Integer.valueOf(d) / 1024 / 5;
         this.net = Integer.valueOf(n) / 1024 / 5;
-        this.cpu = Integer.valueOf(c)/ 100.00f;
+        this.cpu = 1 - (Integer.valueOf(c)/ 100.00f);
         this.time = Integer.valueOf(t);
         this.hostname = h;
     }
@@ -83,7 +84,7 @@ public class LogTranslator {
         try {
             Trans trans = new Trans();
 
-            BufferedReader in = new BufferedReader(new FileReader("monitor.log"));
+            BufferedReader in = new BufferedReader(new FileReader("origin.log"));
             String line;
             while ((line = in.readLine()) != null) {
                 Pattern pattern = Pattern.compile("('disk/total': Disk\\(.*?\\)).*?('net/total': Network\\(.*?\\)).*?('timestamp': )(\\d+).*?('hostname': 'ip-)(\\d+-\\d+-\\d+-\\d+).*?('cpu/total': CPU\\(.*?\\))");
@@ -112,7 +113,7 @@ public class LogTranslator {
 
 
                     String cpuStr = matcher.group(7);
-                    Pattern cpuPat = Pattern.compile("(user=)(\\d+)");
+                    Pattern cpuPat = Pattern.compile("(idle=)(\\d+)");
                     Matcher cpuMat = cpuPat.matcher(cpuStr);
                     if(cpuMat.find()) {
                         cpu = cpuMat.group(2);
@@ -128,7 +129,7 @@ public class LogTranslator {
             }
             in.close();
 
-            BufferedWriter out = new BufferedWriter(new FileWriter("out"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("origin.out"));
 
             List<Data> dataList = trans.translate();
             for(Data data : dataList) {

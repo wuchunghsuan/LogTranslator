@@ -15,7 +15,7 @@ green = '#2E8B57'
 light_blue = '#87CEFA'
 light_green = '#CCFFCC'
 
-f = open('./out')
+f = open('./scache.out')
 # f = open('./scache_util')
 
 net = []
@@ -56,11 +56,11 @@ line_cpu = ax.plot(xs, cpu,
 # ax.set_xticks(xs + width)
 # plot exe bar util
 exe_x = 1
-exe_width = 41
-s_write_x = 8
-s_write_width = 40
-s_read_x = 45
-s_read_width = 50
+exe_width = 33
+s_write_x = 9
+s_write_width = 34
+s_read_x = 36
+s_read_width = 40
 
 # plot exe bar scache
 # exe_x = 8
@@ -100,16 +100,16 @@ ax.annotate(s='', xy=(exe_x,0.2), xytext=((exe_x+exe_width),0.2), arrowprops=dic
 ax.text(exe_x+2, 0.22, 'Execution', fontsize=20)
 
 # plot util text
-ax.annotate(s='', xy=(s_write_x,0.75), xytext=((s_write_x+s_write_width),0.75), arrowprops=dict(arrowstyle='<->'))
-ax.text(s_write_x, 0.77, 'Shuffle Write', fontsize=16)
-ax.annotate(s='', xy=(s_read_x,0.96), xytext=((s_read_x+s_read_width),0.96), arrowprops=dict(arrowstyle='<->'))
-ax.text(s_read_x + 5, 0.98, 'Shuffle Read and Execution', fontsize=16)
+# ax.annotate(s='', xy=(s_write_x,0.75), xytext=((s_write_x+s_write_width),0.75), arrowprops=dict(arrowstyle='<->'))
+# ax.text(s_write_x, 0.77, 'Shuffle Write', fontsize=16)
+# ax.annotate(s='', xy=(s_read_x,0.96), xytext=((s_read_x+s_read_width),0.96), arrowprops=dict(arrowstyle='<->'))
+# ax.text(s_read_x + 5, 0.98, 'Shuffle Read and Execution', fontsize=16)
 
 # plot scache text
-# ax.annotate(s='', xy=(s_write_x,0.5), xytext=((s_write_x+s_write_width),0.5), arrowprops=dict(arrowstyle='<->'))
-# ax.text(s_write_x-0.5, 0.52, 'Shuffle Write', fontsize=16)
-# ax.annotate(s='', xy=(s_read_x,0.98), xytext=((s_read_x+s_read_width),0.98), arrowprops=dict(arrowstyle='<->'))
-# ax.text(s_read_x, 1, 'Reduce Execution', fontsize=16)
+ax.annotate(s='', xy=(s_write_x,0.5), xytext=((s_write_x+s_write_width),0.5), arrowprops=dict(arrowstyle='<->'))
+ax.text(s_write_x-0.5, 0.52, 'Shuffle Write', fontsize=16)
+ax.annotate(s='', xy=(s_read_x,0.98), xytext=((s_read_x+s_read_width),0.98), arrowprops=dict(arrowstyle='<->'))
+ax.text(s_read_x, 1, 'Reduce Execution', fontsize=16)
 # ax2.set_aspect((350 / 1.1) * 0.3 / ax2.get_data_ratio())
 # plt.legend(loc=1, fontsize=18, frameon=False)
 lines = line_cpu + line_net + line_disk
@@ -120,7 +120,7 @@ ax.legend(lines, labels, loc=1, fontsize=18,
         frameon=False)
 
 
-plt.savefig("util.pdf")
+plt.savefig("terasort-scache-256.pdf")
 # plt.savefig("scache_util.pdf")
 # size = fig.get_size_inches()
 # print size
