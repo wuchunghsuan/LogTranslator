@@ -70,9 +70,9 @@ s_read_width = 40
 # s_read_x = 21
 # s_read_width = 6
 
-ax.bar(left=[exe_x,s_write_x,s_read_x], height=[1.1,1.1,1.1], width=[exe_width,s_write_width,s_read_width],
-        linewidth=0, color=[light_blue, light_orange, light_green],
-        alpha=0.2)
+# ax.bar(left=[exe_x,s_write_x,s_read_x], height=[1.1,1.1,1.1], width=[exe_width,s_write_width,s_read_width],
+#         linewidth=0, color=[light_blue, light_orange, light_green],
+#         alpha=0.2)
 
 ax.set_xticklabels([])
 ax.set_ylabel('CPU Utilization \%', fontsize=18)
@@ -96,8 +96,8 @@ line_net = ax2.plot(xs, net,
             label='Network TX')
 ax2.set_ylabel('Throughput (MB/s)', fontsize=18)
 
-ax.annotate(s='', xy=(exe_x,0.2), xytext=((exe_x+exe_width),0.2), arrowprops=dict(arrowstyle='<->'))
-ax.text(exe_x+2, 0.22, 'Execution', fontsize=20)
+# ax.annotate(s='', xy=(exe_x,0.2), xytext=((exe_x+exe_width),0.2), arrowprops=dict(arrowstyle='<->'))
+# ax.text(exe_x+2, 0.22, 'Execution', fontsize=20)
 
 # plot util text
 # ax.annotate(s='', xy=(s_write_x,0.75), xytext=((s_write_x+s_write_width),0.75), arrowprops=dict(arrowstyle='<->'))
@@ -106,10 +106,10 @@ ax.text(exe_x+2, 0.22, 'Execution', fontsize=20)
 # ax.text(s_read_x + 5, 0.98, 'Shuffle Read and Execution', fontsize=16)
 
 # plot scache text
-ax.annotate(s='', xy=(s_write_x,0.5), xytext=((s_write_x+s_write_width),0.5), arrowprops=dict(arrowstyle='<->'))
-ax.text(s_write_x-0.5, 0.52, 'Shuffle Write', fontsize=16)
-ax.annotate(s='', xy=(s_read_x,0.98), xytext=((s_read_x+s_read_width),0.98), arrowprops=dict(arrowstyle='<->'))
-ax.text(s_read_x, 1, 'Reduce Execution', fontsize=16)
+# ax.annotate(s='', xy=(s_write_x,0.5), xytext=((s_write_x+s_write_width),0.5), arrowprops=dict(arrowstyle='<->'))
+# ax.text(s_write_x-0.5, 0.52, 'Shuffle Write', fontsize=16)
+# ax.annotate(s='', xy=(s_read_x,0.98), xytext=((s_read_x+s_read_width),0.98), arrowprops=dict(arrowstyle='<->'))
+# ax.text(s_read_x, 1, 'Reduce Execution', fontsize=16)
 # ax2.set_aspect((350 / 1.1) * 0.3 / ax2.get_data_ratio())
 # plt.legend(loc=1, fontsize=18, frameon=False)
 lines = line_cpu + line_net + line_disk
