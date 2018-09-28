@@ -56,7 +56,7 @@ class Trans {
             
         }
         (BList.get(BList.size() - 1)).dataMap.put(log.hostname, log);
-        // System.out.println(log.hostname + "\t" + log.time + "\t" + log.disk + "\t" + log.net + "\t" + log.cpu);
+        System.out.println(log.hostname + "\t" + log.time + "\t" + log.disk + "\t" + log.net + "\t" + log.cpu);
     }
     public List<Data> translate() {
         List<Data> ret = new ArrayList<>();
@@ -83,8 +83,9 @@ public class LogTranslator {
     public static void main(String[] args)  {
         try {
             Trans trans = new Trans();
+            String filename = "terasort-scache-64G";
 
-            BufferedReader in = new BufferedReader(new FileReader("origin.log"));
+            BufferedReader in = new BufferedReader(new FileReader(filename + ".log"));
             String line;
             while ((line = in.readLine()) != null) {
                 Pattern pattern = Pattern.compile("('disk/total': Disk\\(.*?\\)).*?('net/total': Network\\(.*?\\)).*?('timestamp': )(\\d+).*?('hostname': 'ip-)(\\d+-\\d+-\\d+-\\d+).*?('cpu/total': CPU\\(.*?\\))");
@@ -120,16 +121,16 @@ public class LogTranslator {
                         // System.out.println("CPU recv_bytes: " + cpuMat.group(2));
                     }
 
-                    // System.out.println(hostname + " " + time + " " + disk + " " + net + " " + cpu);
+                    System.out.println(hostname + " " + time + " " + disk + " " + net + " " + cpu);
                     trans.add(new Log(hostname, time, disk, net, cpu));
                 }
                 else {
-                    // System.out.println("Not Found.");
+                    System.out.println("Not Found.");
                 }
             }
             in.close();
 
-            BufferedWriter out = new BufferedWriter(new FileWriter("origin.out"));
+            BufferedWriter out = new BufferedWriter(new FileWriter(filename + ".out"));
 
             List<Data> dataList = trans.translate();
             for(Data data : dataList) {

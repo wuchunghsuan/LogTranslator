@@ -15,7 +15,9 @@ green = '#2E8B57'
 light_blue = '#87CEFA'
 light_green = '#CCFFCC'
 
-f = open('./origin.out')
+filename = 'terasort-scache-32G'
+
+f = open('../' + filename + '.out')
 
 net = []
 cpu = []
@@ -119,7 +121,7 @@ ax.legend(lines, labels, loc=1, fontsize=18,
         frameon=False)
 
 
-plt.savefig("terasort-origin-256.pdf")
+plt.savefig(filename + ".pdf")
 # plt.savefig("scache_util.pdf")
 # size = fig.get_size_inches()
 # print size
